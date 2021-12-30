@@ -285,6 +285,17 @@ namespace HmsPlugin
             var obj = JsonUtility.FromJson<HMSAGConnectConfig>(File.ReadAllText(Application.streamingAssetsPath + "/agconnect-services.json"));
             return obj;
         }
+        public static Boolean CreateAGConnectConfig(string jsonString)
+        {
+            // https://videlais.com/2021/02/25/using-jsonutility-in-unity-to-save-and-load-game-data/
+            if (File.Exists(Application.streamingAssetsPath + "/agconnect-services.json")) 
+            {
+                File.Copy(Application.streamingAssetsPath + "/agconnect-services.json", Application.streamingAssetsPath + "/backup-agconnect-services.json");
+            }
+            Debug.Log("<!!> CreateAGConnectConfig"+ jsonString);
+            File.WriteAllText(Application.streamingAssetsPath + "/agconnect-services.json", jsonString);
+            return true;
+        }
 
         [Serializable]
         public class CountryInfo

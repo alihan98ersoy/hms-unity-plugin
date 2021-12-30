@@ -12,11 +12,13 @@ namespace HmsPlugin
     {
         private HelpBox.HelpBox _helpBox;
 
-        private bool hasAGConnectFile;
+        public bool hasAGConnectFile;
+
+        public string errorMessage = "Please import your agconnect-services.json file to StreamingAssets folder";
 
         public HelpboxAGConnectFile()
         {
-            _helpBox = new HelpBox.HelpBox("Please import your agconnect-services.json file to StreamingAssets folder", UnityEditor.MessageType.Error);
+            _helpBox = new HelpBox.HelpBox(errorMessage, UnityEditor.MessageType.Error);
             hasAGConnectFile = File.Exists(Application.streamingAssetsPath + "/agconnect-services.json");
         }
 
